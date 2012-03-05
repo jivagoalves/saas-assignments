@@ -4,4 +4,7 @@ def palindrome?(string)
 end
 
 def count_words(string)
+  result = Hash.new 0
+  string.gsub(/\w+/) {|w| result[w.downcase] = result[w.downcase] + 1}
+  result
 end

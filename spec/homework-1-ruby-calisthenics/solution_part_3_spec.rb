@@ -5,7 +5,7 @@ describe "combine_anagrams" do
     it "should return a group for each string" do
       words = ['cars','for','potatoes']
       words.each do |w|
-        combine_anagrams(words).include?([w]).should be_true
+        combine_anagrams(words).should include([w])
       end
       combine_anagrams(words).size.should be_equal(words.size)
     end

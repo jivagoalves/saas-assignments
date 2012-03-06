@@ -1,13 +1,7 @@
 def combine_anagrams(words)
-  result = []
-  groups = {}
+  groups = Hash.new {|hash,key| hash[key] = []}
   words.each do |w|
-    key = w.chars.sort.join
-    groups[key] ||= []
-    groups[key] << w unless groups[key].include?(w)
+    groups[w.downcase.chars.sort.join] << w
   end
-  groups.each do |k,v|
-    result << groups[k]
-  end
-  result
+  groups.values
 end

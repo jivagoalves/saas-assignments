@@ -17,6 +17,12 @@ describe "combine_anagrams" do
       combine_anagrams(words).size.should be_equal(1)
       combine_anagrams(words).should include(["cars","scar"])
     end
+
+    it "should not care about case" do
+      words = ["cars","scAr"]
+      combine_anagrams(words).size.should be_equal(1)
+      combine_anagrams(words).should include(["cars","scAr"])
+    end
   end
 
   context "when there are two anagrams and one string" do

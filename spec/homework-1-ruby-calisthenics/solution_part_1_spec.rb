@@ -34,7 +34,7 @@ describe "count_words" do
     it 'should return a hash whose keys are words in the string' do
       hash = count_words(words.join(" "))
       words.each do |w|
-        hash.keys.include?(w).should be_true
+        hash.keys.should include(w)
       end
       hash.keys.size.should be_equal(words.size)
     end

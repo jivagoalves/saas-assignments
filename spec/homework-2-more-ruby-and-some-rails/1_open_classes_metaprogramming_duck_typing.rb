@@ -27,4 +27,28 @@ describe Numeric do
       end
     end
   end
+
+  describe "#currency" do
+    it "should respond to currency" do
+      numeric.should respond_to :currency
+    end
+
+    it "should have the default currency equal to dollar" do
+      numeric.currency.should == :dollar
+    end
+
+    CURRENCIES.each_pair do |key, value|
+      context "for #{key.to_s}" do
+        it "should change the currency" do
+          1.currency.should == :dollar
+          1.send(key).currency.should == key
+        end
+
+        it "should keep the currency" do
+          1.send(key).currency.should == key
+          value.currency.should == :dollar
+        end
+      end
+    end
+  end
 end

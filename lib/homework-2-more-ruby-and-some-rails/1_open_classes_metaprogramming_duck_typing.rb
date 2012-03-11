@@ -17,9 +17,17 @@ class Numeric
     end
   end
 
+  attr_writer :currency
+
+  def currency
+    @currency ||= :dollar
+  end
+
   private
 
   def calculate_currency_for(currency)
-    self * @@currencies[currency]
+    result = self * @@currencies[currency]
+    result.currency = currency
+    result
   end
 end

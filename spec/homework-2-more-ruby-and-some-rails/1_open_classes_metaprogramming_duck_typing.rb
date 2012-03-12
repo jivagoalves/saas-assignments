@@ -76,8 +76,6 @@ end
 
 describe String do
   describe "#palindrome?" do
-    let(:palindrome) { "ama" }
-
     context "when it is a palindrome" do
       it 'should return true' do
         "ama".should be_palindrome

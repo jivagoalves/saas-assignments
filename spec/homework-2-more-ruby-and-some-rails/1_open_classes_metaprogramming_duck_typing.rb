@@ -113,10 +113,35 @@ describe Enumerable do
       ["abc","def"].should_not be_palindrome
     end
 
-    it 'should not raise errors for an enumerable of hashes' do
-      expect {
-        {:a => 1, :b => 2}.palindrome?
-      }.to_not raise_error
+    it 'should work for an enumerable of hashes' do
+      [{:a => 1}, {:b => 2}, {:a => 1}].palindrome?.should be_true
+    end
+
+    context 'for non-sensical cases of enumerables, like hashes' do
+      it 'should not raise errors' do
+        expect {
+          {:a => 1, :b => 2}.palindrome?
+        }.to_not raise_error
+      end
+
+      it 'should return true or false' do
+        result = {:a => 1, :b => 2}.palindrome?
+        (result.is_a?(TrueClass) || result.is_a?(FalseClass)).should be_true
+      end
+    end
+
+    it 'should still work for the case of non-array enumerables that do make sense, like iterators (valid palindrome)' do
+      class Foo
+        include Enumerable
+        def initialize
+          @palindrome = ["a","m","a"]
+        end
+        def each
+          @palindrome.each {|e| yield e}
+        end
+      end
+
+      Foo.new.should be_palindrome
     end
 
     it 'should still work for non-array enumerables that do make sense (invalid palindromes)' do

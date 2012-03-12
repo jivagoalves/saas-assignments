@@ -48,6 +48,12 @@ end
 
 module Enumerable
   def palindrome?
-    self == self.reverse if self.respond_to?(:reverse)
+    return false unless self.respond_to?(:each)
+    normal, reverse = [],[]
+    self.each do |elt|
+      normal << elt
+      reverse.insert 0, elt
+    end
+    normal == reverse
   end
 end

@@ -45,3 +45,9 @@ class String
     str == str.reverse
   end
 end
+
+module Enumerable
+  def palindrome?
+    self == self.reverse unless self.is_a?(Hash)
+  end
+end

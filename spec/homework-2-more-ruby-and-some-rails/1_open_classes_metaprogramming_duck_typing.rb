@@ -100,3 +100,23 @@ describe String do
     end
   end
 end
+
+describe Enumerable do
+  describe "#palindrome?" do
+    it 'should work for an enumerable of numbers' do
+      [1,2,3,2,1].should be_palindrome
+      [1,4,3,2,1].should_not be_palindrome
+    end
+
+    it 'should work for an enumerable of strings' do
+      ["abc","def","def","abc"].should be_palindrome
+      ["abc","def"].should_not be_palindrome
+    end
+
+    it 'should not raise errors for an enumerable of hashes' do
+      expect {
+        {:a => 1, :b => 2}.palindrome?
+      }.to_not raise_error
+    end
+  end
+end

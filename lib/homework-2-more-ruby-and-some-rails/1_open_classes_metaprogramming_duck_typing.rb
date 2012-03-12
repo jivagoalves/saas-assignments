@@ -17,6 +17,13 @@ class Numeric
     end
   end
 
+  define_method("in") do |currency|
+    singular_currency = currency.to_s.gsub(/s$/,"").to_sym
+    result = self / @@currencies[singular_currency]
+    result.currency = singular_currency
+    result
+  end
+
   attr_writer :currency
 
   def currency

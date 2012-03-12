@@ -51,4 +51,25 @@ describe Numeric do
       end
     end
   end
+
+  describe "#in" do
+    it "should respond to #in" do
+      numeric.should respond_to :in
+    end
+
+    CURRENCIES.each_key do |key|
+      context "for #{key.to_s}" do
+        let(:key_with_s) { (key.to_s + "s").to_sym }
+
+        CURRENCIES.each_pair do |currency, value|
+          it "should convert to #{currency.to_s}" do
+            currency_with_s = (currency.to_s + "s").to_sym
+
+            1.send(key).in(currency).should == 1 * CURRENCIES[key] / CURRENCIES[currency]
+            2.send(key_with_s).in(currency_with_s).should == 2 * CURRENCIES[key] / CURRENCIES[currency]
+          end
+        end
+      end
+    end
+  end
 end

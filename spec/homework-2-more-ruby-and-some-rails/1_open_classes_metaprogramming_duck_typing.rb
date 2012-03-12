@@ -118,5 +118,9 @@ describe Enumerable do
         {:a => 1, :b => 2}.palindrome?
       }.to_not raise_error
     end
+
+    it 'should still work for non-array enumerables that do make sense (invalid palindromes)' do
+      (1..9).palindrome?.should be_false
+    end
   end
 end

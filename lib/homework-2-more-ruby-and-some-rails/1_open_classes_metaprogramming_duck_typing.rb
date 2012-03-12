@@ -38,3 +38,10 @@ class Numeric
     result
   end
 end
+
+class String
+  def palindrome?
+    str = self.downcase.gsub(/\W+/,"")
+    str == str.reverse
+  end
+end

@@ -73,3 +73,32 @@ describe Numeric do
     end
   end
 end
+
+describe String do
+  describe "#palindrome?" do
+    let(:palindrome) { "ama" }
+
+    context "when it is a palindrome" do
+      it 'should return true' do
+        "ama".should be_palindrome
+      end
+    end
+
+    context "when it isn't a palindrome" do
+      it 'should return false' do
+        "amaa".should_not be_palindrome
+      end
+    end
+
+    it 'should ignore case' do
+      "Aamaa".should be_palindrome
+      "amaAaama".should be_palindrome
+    end
+
+    it 'should ignore punctuation' do
+      ['?','!','.',',','-',';',':'].each do |c|
+        ("ama" + c).should be_palindrome
+      end
+    end
+  end
+end
